@@ -12,6 +12,8 @@ class Dock : public QMainWindow {
 
 public:
     Dock(QWidget *parent = nullptr);
+    ~Dock();
+    void saveDockConfig();  // Moved from private to public
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event) override;
@@ -22,6 +24,7 @@ protected:
 private slots:
     void addNewIcon();
     void removeIcon();
+    void loadDockConfig();
 
 private:
     QHBoxLayout *layout;
@@ -29,6 +32,8 @@ private:
     QPoint dragStartPosition;
     QLabel* clickedLabel;
     void adjustDockSize();
+    void setupInitialDock();
+    QString configFilePath;
     const int ICON_SIZE = 48;
 };
 
